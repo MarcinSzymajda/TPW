@@ -4,5 +4,5 @@
 
 | Name Surname (initials) | GUID                                     |
 | ----------------------- | ---------------------------------------- |
-| Marcin Szymajda         | `{FD9D086C-532F-4AAC-BB99-69D7798837D8}` |
-| Maciej Wilczyński       | `{44FBFCF5-4430-4964-878D-1867DC679E0D}` |
+| Marcin Szymajda         | `{8d6e772c-b866-4f30-9ed1-f4b206ba6216}` |
+| Maciej Wilczyński       | `{49358287-2d3c-48b4-844f-9a2d08a93f30}` |
