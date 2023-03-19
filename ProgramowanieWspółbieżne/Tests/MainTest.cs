@@ -11,6 +11,7 @@ namespace mainTestNS {
         {
             HelloClass temp = new HelloClass();
             Assert.AreEqual(temp.consoleWrite("Hello"), "Hello");
+            Assert.AreEqual(temp.consoleWrite("TPW"), "TPW");
         }
 }
 
