@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="Ball Collision" Height="642" Width="800">
-    <Grid RenderTransformOrigin="0.491,0.476">
-        <TextBox Name="ballAmount" Text="Podaj liczbę kulek"  Height="70" Width="160"  Margin="118,123,522,433" BorderBrush="Black" BorderThickness="2,2,2,2" Background="#FFC13838" />
-    </Grid>
+        Title="Ball Collision" Height="742" Width="800">
+	<Grid RenderTransformOrigin="0.491,0.476" >
+		<Border BorderBrush="#375573" BorderThickness="5,5,5,5" Height="400" Width="700" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,134,0,0"/>
+		<TextBox HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,20" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="80" TextAlignment="Center" FontSize="40" BorderBrush="Black" BorderThickness="5,5,5,5" />
+		<Button Margin="20,28,530,30" Content="ADD" FontSize="30" BorderThickness="5,5,5,5" VerticalAlignment="Bottom" BorderBrush="Black"/>
+		<Button Margin="530,28,50,30" Content="STOP" VerticalAlignment="Bottom" BorderThickness="5,5,5,5" BorderBrush="Black" FontSize="30"/>
+	</Grid>
 </Window>

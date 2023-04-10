@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public abstract class DataAPI
+    public abstract class DataAbstractAPI
     {
+        public static DataAbstractAPI createApi()
+        {
+            return new DataAbstractAPI();
+        }
+    }
+
+    public internal class DataAPI : DataAbstractAPI
+    {
+
     }
 }
