@@ -14,13 +14,13 @@
             this.Radius = radius;
             this.X = x;
             this.Y = y;
-            this.speedX = rnd.next(-3, 3);
-            this.speedY = rnd.next(-3, 3);
+            this.speedX = rnd.Next(-3, 3);
+            this.speedY = rnd.Next(-3, 3);
             do
             {
-                this.speedX = rnd.next(-3, 3);
-                this.speedY = rnd.next(-3, 3);
-            } while (speedX == 0 && speedY == 0)
+                this.speedX = rnd.Next(-3, 3);
+                this.speedY = rnd.Next(-3, 3);
+            } while (speedX == 0 && speedY == 0);
 
         }
 
