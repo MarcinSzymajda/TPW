@@ -13,9 +13,9 @@ namespace Logic
 
     public abstract class LogicAbstractAPI
     {
-       public static LogicAbstractAPI createAPI(DataAbstractAPI dataAPI)
+       public static LogicAbstractAPI createAPI(DataAbstractAPI? dataAPI = default)
         {
-            return new LogicAPI(dataAPI);
+            return new LogicAPI(dataAPI ?? DataAbstractAPI.CreateApi());
         }
 
         public abstract ObservableCollection<Ball> createBalls(int canvasWidth, int canvasHeight, int amountOfBalls);

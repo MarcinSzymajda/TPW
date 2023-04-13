@@ -3,7 +3,7 @@ namespace Data
 {
     public abstract class DataAbstractAPI
     {
-        public static DataAbstractAPI createApi()
+        public static DataAbstractAPI CreateApi()
         {
             return new DataAPI();
         }
