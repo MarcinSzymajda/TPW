@@ -1,4 +1,4 @@
-﻿namespace Logic
+﻿namespace LogicNS
 {
     public class Ball
     {
@@ -9,23 +9,22 @@
         public int speedY { get; set; }
         public string Color { get; set; }
 
-        public Ball(int radius,int x,int y)
+        public Ball(int radius,int x,int y,string color,int maxSpeed)
         {
-            Random rnd = new Random();
-            this.Radius = radius;
-            this.X = x;
-            this.Y = y;
-            this.speedX = rnd.Next(-3, 3);
-            this.speedY = rnd.Next(-3, 3);
-            this.Color = string.Format("#{0:X6}", rnd.Next(0x1000000)
-);             Console.WriteLine("Kula");
+            Random random = new Random();
+            Radius = radius;
+            X = x;
+            Y = y;
+            Color = color;
             do
             {
-                this.speedX = rnd.Next(-3, 3);
-                this.speedY = rnd.Next(-3, 3);
-            } while (speedX == 0 && speedY == 0);
-            Console.WriteLine("Kula");
-                }
+                speedX = random.Next(-maxSpeed, maxSpeed);
+            } while (speedX == 0);
+            do
+            {
+                speedY = random.Next(-maxSpeed, maxSpeed);
+            } while (speedY == 0);
+        }
 
   
     }

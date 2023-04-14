@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ModelNS;
-using Logic;
+using LogicNS;
 
 namespace ViewModelNS
 {
@@ -16,15 +16,15 @@ namespace ViewModelNS
         private int _count;
         public int Count
         {
-            get { return _count; }
+            get => _count;
             set
             {
                 _count = value;
-                OnPropertyChanged(nameof(Count));
+                OnPropertyChanged();
             }
         }
 
-        public Model model { get; set; }
+        private Model model { get; set; }
 
         private ObservableCollection<Ball> balls;
         public ObservableCollection<Ball> Balls
@@ -33,42 +33,31 @@ namespace ViewModelNS
             set
             {
                 balls = value;
-                OnPropertyChanged(nameof(Balls));
+                OnPropertyChanged();
             }
         }
-
-    
-
         public CombinedVM()
         {
             balls = new();
-            WindowHeight = 640;
-            WindowWidth = 1230;
+            WindowHeight = 600;
+            WindowWidth = 720;
             model = new Model(WindowWidth, WindowHeight);
-           
-            StartCommand = new Commands(() => Start());
-            StopCommand = new Commands(() => Stop());
+            StartCommand = new Commands(Start);
+            StopCommand = new Commands(Stop);
         }
-      
-
         private async void Start()
         {
-            
             Balls = model.GetStartingCirclePositions(Count);
-            while (model.Animating)
+            while (model.IsAnimating)
             {
-                await Task.Delay(15);
+                await Task.Delay(10);
                 Balls = model.MoveCircle(balls);
             }
         }
-
         private void Stop()
         {
-            model.Animating = false;
+            model.IsAnimating = false;
         }
-
-       
-        
     }
 }
 

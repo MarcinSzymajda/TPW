@@ -13,6 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{505C19B7-C353-4D40-898A-31C46389594C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{E8E4FFAB-EEB6-4CF7-A763-AF515F71DF57}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8EBABD7D-47DA-4AE8-ADBD-E45BFA77213E} = {8EBABD7D-47DA-4AE8-ADBD-E45BFA77213E}
+		{505C19B7-C353-4D40-898A-31C46389594C} = {505C19B7-C353-4D40-898A-31C46389594C}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,10 @@ Global
 		{505C19B7-C353-4D40-898A-31C46389594C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{505C19B7-C353-4D40-898A-31C46389594C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{505C19B7-C353-4D40-898A-31C46389594C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E4FFAB-EEB6-4CF7-A763-AF515F71DF57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E4FFAB-EEB6-4CF7-A763-AF515F71DF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E4FFAB-EEB6-4CF7-A763-AF515F71DF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E4FFAB-EEB6-4CF7-A763-AF515F71DF57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
