@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Ball Collision" Height="700" Width="800">
     <Window.DataContext>
-        <vm1:CombinedVM/>
+        <vm1:ViewModel/>
     </Window.DataContext>
   
     <Grid Background="LawnGreen">
