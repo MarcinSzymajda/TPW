@@ -30,8 +30,8 @@ namespace LogicNS;
             ObservableCollection<Ball> updatedBalls = new();
             foreach (var ball in balls)
             {
-                if (ball.X + ball.Radius + 1 > canvasWidth || ball.X - ball.Radius - 1 < 0) ball.speedX *= -1;
-                if (ball.Y + ball.Radius + 1 > canvasHeight  || ball.Y - ball.Radius - 1 < 0) ball.speedY *= -1;
+                if (ball.X + ball.Radius >= canvasWidth || ball.X - ball.Radius <= 0) ball.speedX *= -1;
+                if (ball.Y + ball.Radius >= canvasHeight  || ball.Y - ball.Radius <= 0) ball.speedY *= -1;
                 ball.X += ball.speedX;
                 ball.Y += ball.speedY;
                 updatedBalls.Add(ball);
