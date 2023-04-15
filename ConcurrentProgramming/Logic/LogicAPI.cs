@@ -30,10 +30,29 @@ namespace LogicNS;
             ObservableCollection<Ball> updatedBalls = new();
             foreach (var ball in balls)
             {
-                if (ball.X + ball.Radius + ball.speedX>= canvasWidth || ball.X - ball.Radius + ball.speedX <= 0) ball.speedX *= -1;
-                if (ball.Y + ball.Radius + ball.speedY>= canvasHeight  || ball.Y - ball.Radius + ball.speedY <= 0) ball.speedY *= -1;
-                ball.X += ball.speedX;
-                ball.Y += ball.speedY;
+                int xPosDifference = ball.speedX;
+                int yPosDifference = ball.speedY;
+                if (ball.X + ball.Radius + ball.speedX >= canvasWidth)
+                {
+                    xPosDifference =  -1*(ball.speedX - 2*Math.Abs(canvasWidth - ball.X - ball.Radius));
+                    ball.speedX *= -1;
+                } else if (ball.X - ball.Radius + ball.speedX <= 0)
+                {
+                    xPosDifference =  -1*(ball.speedX + 2*Math.Abs(ball.X - ball.Radius));
+                    ball.speedX *= -1;
+                }
+                if (ball.Y + ball.Radius + ball.speedY >= canvasHeight )
+                {
+                    yPosDifference =  -1*(ball.speedY - 2*Math.Abs(canvasHeight - ball.Y - ball.Radius));
+                    ball.speedY *= -1;
+                }
+                else if(ball.Y - ball.Radius + ball.speedY <= 0)
+                {
+                    yPosDifference =  -1*(ball.speedY + 2*Math.Abs(ball.Y - ball.Radius));
+                    ball.speedY *= -1;
+                }
+                ball.X += xPosDifference;
+                ball.Y += yPosDifference;
                 updatedBalls.Add(ball);
             }
             return updatedBalls;
