@@ -5,22 +5,17 @@ namespace ViewModelNS
     public class Commands : ICommand
     {
         private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
+        
         public event EventHandler? CanExecuteChanged;
-        public Commands(Action execute) : this(execute, null) { }
 
-        private Commands(Action execute, Func<bool> canExecute)
+
+        public Commands(Action execute)
         {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-            _canExecute = canExecute;
+            _execute = execute ?? throw new ArgumentNullException();
         }
         public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
-                return true;
-            if (parameter == null)
-                return _canExecute();
-            return _canExecute();
+            return true;
         }
         public virtual void Execute(object parameter)
         {
