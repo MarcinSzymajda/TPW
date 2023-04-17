@@ -43,9 +43,9 @@ namespace ViewModelNS
         public ViewModel()
         {
             balls = new();
-            WindowHeight = 600;
-            WindowWidth = 720;
-            model = new Model(WindowWidth, WindowHeight);
+            model = new Model();
+            WindowWidth = model.canvasWidth;
+            WindowHeight = model.canvasHeight;
             StartCommand = new Commands(Start);
             StopCommand = new Commands(Stop);
         }

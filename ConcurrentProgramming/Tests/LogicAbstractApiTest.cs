@@ -24,14 +24,14 @@ public class LogicAbstractApiTest
     [Test]
     public void CreateBallsTest()
     {
-        Assert.AreEqual(5,logicAbstractApi.CreateBalls(600,750,5).Count);
+        Assert.AreEqual(5,logicAbstractApi.CreateBalls(5).Count);
     }
 
     [Test]
     public void UpdateBallsTest()
     {
-        Assert.AreEqual(logicAbstractApi.CreateBalls(600,600,3).Count,
-            logicAbstractApi.UpdateBalls(600,600,logicAbstractApi.CreateBalls(600,600,3)).Count);
+        Assert.AreEqual(logicAbstractApi.CreateBalls(3).Count,
+            logicAbstractApi.UpdateBalls(logicAbstractApi.CreateBalls(3)).Count);
     }
     
 }

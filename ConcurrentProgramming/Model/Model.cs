@@ -5,26 +5,26 @@ namespace ModelNS
 {
     public class Model
     {
-        private readonly int canvasWidth;
-        private readonly int canvasHeight;
+        public readonly int canvasWidth;
+        public readonly int canvasHeight;
         private readonly LogicAbstractAPI logicAbstractAPI;
         public bool IsAnimating { get; set; }
 
-        public Model(int canvasWidth, int canvasHeight,LogicAbstractAPI? logicAbstractAPI = null) {
-            this.canvasWidth = canvasWidth;
-            this.canvasHeight = canvasHeight;
+        public Model(LogicAbstractAPI? logicAbstractAPI = null) {
             this.logicAbstractAPI = logicAbstractAPI?? LogicAbstractAPI.CreateAPI();
+            this.canvasWidth = this.logicAbstractAPI.canvasWidth;
+            this.canvasHeight = this.logicAbstractAPI.canvasHeight;
         }
 
         public ObservableCollection<Ball> GetStartingCirclePositions(int amountOfBalls)
         {
             IsAnimating = true;
-            return logicAbstractAPI.CreateBalls(canvasWidth, canvasHeight, amountOfBalls);
+            return logicAbstractAPI.CreateBalls( amountOfBalls);
         }
 
         public ObservableCollection<Ball> MoveCircle(ObservableCollection<Ball> balls)
         {
-            return logicAbstractAPI.UpdateBalls(canvasWidth, canvasHeight, balls);
+            return logicAbstractAPI.UpdateBalls( balls);
         }
         
     }

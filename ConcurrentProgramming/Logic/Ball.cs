@@ -1,4 +1,6 @@
-﻿namespace LogicNS
+﻿using DataNS;
+
+namespace LogicNS
 {
     public class Ball
     {
@@ -9,20 +11,20 @@
         public int speedY { get; set; }
         public string Color { get; set; }
 
-        public Ball(int radius,int x,int y,string color,int maxSpeed)
+        public Ball(DataAbstractAPI dataAbstractApi)
         {
             Random random = new Random();
-            Radius = radius;
-            X = x;
-            Y = y;
-            Color = color;
+            Radius = dataAbstractApi.radius;
+            X = random.Next(10, dataAbstractApi.canvaswidth - 10);
+            Y = random.Next(10, dataAbstractApi.canvasheight - 10);
+            Color = dataAbstractApi.color;
             do
             {
-                speedX = random.Next(-maxSpeed, maxSpeed);
+                speedX = random.Next(-dataAbstractApi.maxspeed, dataAbstractApi.maxspeed);
             } while (speedX == 0);
             do
             {
-                speedY = random.Next(-maxSpeed, maxSpeed);
+                speedY = random.Next(-dataAbstractApi.maxspeed, dataAbstractApi.maxspeed);
             } while (speedY == 0);
         }
 

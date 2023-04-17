@@ -5,12 +5,14 @@ namespace LogicNS
 {
     public abstract class LogicAbstractAPI
     {
+        public int canvasWidth;
+        public int canvasHeight;
        public static LogicAbstractAPI CreateAPI(DataAbstractAPI? dataAPI = default)
         {
             return new LogicAPI(dataAPI ?? DataAbstractAPI.CreateApi());
         }
-       public abstract ObservableCollection<Ball> CreateBalls(int canvasWidth, int canvasHeight, int amountOfBalls);
-        public abstract ObservableCollection<Ball> UpdateBalls(int canvasWidth, int canvasHeight, ObservableCollection<Ball> balls);
+       public abstract ObservableCollection<Ball> CreateBalls( int amountOfBalls);
+        public abstract ObservableCollection<Ball> UpdateBalls( ObservableCollection<Ball> balls);
 
     
     }
