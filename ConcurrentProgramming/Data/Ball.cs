@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using DataNS;
 
-namespace LogicNS
+namespace DataNS
 {
     public class Ball : INotifyPropertyChanged
     {
@@ -31,21 +31,8 @@ namespace LogicNS
             }}
 
         public int speedX
-        {
-            get => speedx;
-            set
-            {
-                speedx = value;
-                OnPropertyChanged();
-            }
-        }
-        public int speedY {            
-            get => speedy;
-            set
-            {
-                speedy = value;
-                OnPropertyChanged();
-            }}
+        { get ; set; }
+        public int speedY { get; set ;}
         public string Color { get; set; }
         public double Weight { get; set; }
         

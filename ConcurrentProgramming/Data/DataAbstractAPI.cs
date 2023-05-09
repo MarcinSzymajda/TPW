@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
-using LogicNS;
+
 
 namespace DataNS
 {
@@ -13,8 +13,7 @@ namespace DataNS
         public int maxspeed;
         public int maxWeight;
         public int minWeight;
-        public ObservableCollection<Ball> Balls { get; set; }
-        public ConcurrentQueue<Ball> Queue { get; set; } 
+        public List<Ball> Balls { get; set; }
         public static DataAbstractAPI CreateApi()
         {
             return new DataAPI();

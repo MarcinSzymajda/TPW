@@ -8,6 +8,10 @@ namespace ModelNS
         public readonly int canvasWidth;
         public readonly int canvasHeight;
         private readonly LogicAbstractAPI logicAbstractAPI;
+        public  ObservableCollection<ModelNS.Ball> Balls = new ObservableCollection<Ball>();
+
+       
+
         public bool IsAnimating { get; set; }
 
         public Model(LogicAbstractAPI? logicAbstractAPI = null) {
@@ -16,22 +20,28 @@ namespace ModelNS
             this.canvasHeight = this.logicAbstractAPI.canvasHeight;
         }
 
-        public ObservableCollection<Ball> GetStartingCirclePositions(int amountOfBalls)
+        public void GetStartingCirclePositions(int amountOfBalls)
         {
-            logicAbstractAPI.Animating = true;
-            IsAnimating = true;
-            return logicAbstractAPI.CreateBalls( amountOfBalls);
+          
+            logicAbstractAPI.Start();
+            logicAbstractAPI.CreateBalls(amountOfBalls);
+            convert();
         }
 
-        public ObservableCollection<Ball> MoveCircle(ObservableCollection<Ball> balls)
-        {
-            return logicAbstractAPI.UpdateBalls( balls);
-        }
+
 
         public void StopAnimation()
         {
-            logicAbstractAPI.Animating = false;
-            IsAnimating = false;
+            logicAbstractAPI.Stop();
+        }
+
+        public void convert()
+        {
+            
+            foreach (var ball in logicAbstractAPI.generateBallsList())
+            {
+                Balls.Add(new Ball(ball));
+            }
         }
         
     }

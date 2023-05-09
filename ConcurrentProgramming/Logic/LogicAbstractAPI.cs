@@ -12,9 +12,11 @@ namespace LogicNS
         {
             return new LogicAPI(dataAPI ?? DataAbstractAPI.CreateApi());
         }
-       public abstract ObservableCollection<Ball> CreateBalls( int amountOfBalls);
-        public abstract ObservableCollection<Ball> UpdateBalls( ObservableCollection<Ball> balls);
+       public abstract void CreateBalls( int amountOfBalls);
+        
+        public abstract List<LogicNS.Ball> generateBallsList();
 
-    
+        public abstract void Start();
+        public abstract void Stop();
     }
 }
