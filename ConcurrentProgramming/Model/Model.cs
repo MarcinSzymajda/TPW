@@ -18,6 +18,7 @@ namespace ModelNS
 
         public ObservableCollection<Ball> GetStartingCirclePositions(int amountOfBalls)
         {
+            logicAbstractAPI.Animating = true;
             IsAnimating = true;
             return logicAbstractAPI.CreateBalls( amountOfBalls);
         }
@@ -25,6 +26,12 @@ namespace ModelNS
         public ObservableCollection<Ball> MoveCircle(ObservableCollection<Ball> balls)
         {
             return logicAbstractAPI.UpdateBalls( balls);
+        }
+
+        public void StopAnimation()
+        {
+            logicAbstractAPI.Animating = false;
+            IsAnimating = false;
         }
         
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Concurrent;
+using System.Collections.ObjectModel;
 using DataNS;
 
 namespace LogicNS;
@@ -7,6 +8,7 @@ namespace LogicNS;
     public class LogicAPI : LogicAbstractAPI
     {
         private readonly DataAbstractAPI? dataAPI;
+        
 
         public LogicAPI(DataAbstractAPI dataAPI)
         {
@@ -17,14 +19,11 @@ namespace LogicNS;
 
         public override ObservableCollection<Ball> CreateBalls(int amountOfBalls)
         {
-            ObservableCollection<Ball> balls = new ();
-            Random rnd = new Random();
             for(int i=0;i<amountOfBalls;i++) 
             {
-                Ball ball = new(dataAPI);
-                balls.Add(ball);
+                dataAPI.Balls.Add(dataAPI.createBall());
             }
-            return balls;
+            return dataAPI.Balls;
         }
 
         public override ObservableCollection<Ball> UpdateBalls(ObservableCollection<Ball> balls)
@@ -57,7 +56,9 @@ namespace LogicNS;
                 ball.Y += yPosDifference;
                 updatedBalls.Add(ball);
             }
-            return updatedBalls;
-        }
 
+            dataAPI.Balls = updatedBalls;
+            return dataAPI.Balls;
+        }
+        
     }

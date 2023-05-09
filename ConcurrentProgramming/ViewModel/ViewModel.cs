@@ -66,7 +66,8 @@ namespace ViewModelNS
         }
         private void Stop()
         {
-            model.IsAnimating = false;
+            model.StopAnimation();
+            
         }
     }
 }

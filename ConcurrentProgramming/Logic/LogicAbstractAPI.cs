@@ -7,6 +7,7 @@ namespace LogicNS
     {
         public int canvasWidth;
         public int canvasHeight;
+        public bool Animating { get; set; }
        public static LogicAbstractAPI CreateAPI(DataAbstractAPI? dataAPI = default)
         {
             return new LogicAPI(dataAPI ?? DataAbstractAPI.CreateApi());
