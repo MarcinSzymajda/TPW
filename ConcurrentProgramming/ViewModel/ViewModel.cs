@@ -52,6 +52,7 @@ namespace ViewModelNS
         }
         private void Start()
         {
+            Balls.Clear();
             model.GetStartingCirclePositions(Count);
 
         }

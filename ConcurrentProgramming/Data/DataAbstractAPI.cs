@@ -10,7 +10,7 @@ namespace DataNS
         public int canvaswidth;
         public int canvasheight;
         public string color;
-        public int maxspeed;
+        public double maxspeed;
         public int maxWeight;
         public int minWeight;
         public List<Ball> Balls { get; set; }

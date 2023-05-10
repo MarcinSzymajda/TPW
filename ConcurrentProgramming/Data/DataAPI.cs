@@ -1,15 +1,11 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
-
-
-namespace DataNS;
+﻿namespace DataNS;
 
 public class DataAPI : DataAbstractAPI
 {
     public DataAPI()
     {
         Balls = new List<Ball>();
-        minWeight = 1;
+        minWeight = 5;
         maxWeight = 10;
         radius = 10;
         maxspeed = 10;

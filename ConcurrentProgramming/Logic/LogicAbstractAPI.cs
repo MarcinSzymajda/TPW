@@ -18,5 +18,8 @@ namespace LogicNS
 
         public abstract void Start();
         public abstract void Stop();
+
+        public abstract void detectCollision(DataNS.Ball ball);
+
     }
 }

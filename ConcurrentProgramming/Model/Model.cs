@@ -22,7 +22,7 @@ namespace ModelNS
 
         public void GetStartingCirclePositions(int amountOfBalls)
         {
-          
+            Balls.Clear();
             logicAbstractAPI.Start();
             logicAbstractAPI.CreateBalls(amountOfBalls);
             convert();

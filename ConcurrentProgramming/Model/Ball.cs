@@ -5,7 +5,7 @@ namespace ModelNS;
 
 public class Ball : INotifyPropertyChanged
 {
-    public int X
+    public double X
     {
         get => x;
         set
@@ -15,7 +15,7 @@ public class Ball : INotifyPropertyChanged
         }
     }
 
-    public int Y
+    public double Y
     {
         get => y;
         set
@@ -26,8 +26,8 @@ public class Ball : INotifyPropertyChanged
     }
 
     public int Radius { get; set; }
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     public string Color { get; set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;

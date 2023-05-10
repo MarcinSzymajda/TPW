@@ -7,12 +7,13 @@ namespace DataNS
     public class Ball : INotifyPropertyChanged
     {
         public int Radius { get; set; }
-        private int x;
-        private int y;
-        private int speedx;
-        private int speedy;
-
-        public int Y
+        private double x;
+        private double y;
+        private double speedx;
+        private double speedy;
+        public int id { get; set; }
+        public static int counter = 0;
+        public double Y
         {
             get => y;
             set
@@ -22,7 +23,7 @@ namespace DataNS
             }
         }
 
-        public int X { 
+        public double X { 
             get => x;
             set
             {
@@ -30,16 +31,17 @@ namespace DataNS
                 OnPropertyChanged();
             }}
 
-        public int speedX
+        public double speedX
         { get ; set; }
-        public int speedY { get; set ;}
+        public double speedY { get; set ;}
         public string Color { get; set; }
         public double Weight { get; set; }
         
 
         public Ball(DataAbstractAPI dataAbstractApi)
         {
-            
+            id = counter;
+            counter++;
             Random random = new Random();
             Radius = dataAbstractApi.radius;
             X = random.Next(10, dataAbstractApi.canvaswidth - 10);
@@ -48,11 +50,11 @@ namespace DataNS
             Weight = random.Next(dataAbstractApi.minWeight, dataAbstractApi.maxWeight);
             do
             {
-                speedX = random.Next(-dataAbstractApi.maxspeed, dataAbstractApi.maxspeed);
+                speedX = random.Next((int) -dataAbstractApi.maxspeed, (int) dataAbstractApi.maxspeed);
             } while (speedX == 0);
             do
             {
-                speedY = random.Next(-dataAbstractApi.maxspeed, dataAbstractApi.maxspeed);
+                speedY = random.Next((int) -dataAbstractApi.maxspeed,(int) dataAbstractApi.maxspeed);
             } while (speedY == 0);
         }
 
