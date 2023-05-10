@@ -7,6 +7,7 @@ namespace LogicNS;
     public class LogicAPI : LogicAbstractAPI
     {
         private readonly DataAbstractAPI? dataAPI;
+        private int roundCounter = 0;
         
         
         public LogicAPI(DataAbstractAPI dataAPI)
@@ -18,6 +19,7 @@ namespace LogicNS;
 
         public override void CreateBalls(int amountOfBalls)
         {
+            roundCounter++;
             DataNS.Ball.counter = 0;
             dataAPI.Balls.Clear();
             for (int i = 0; i < amountOfBalls; i++)
@@ -30,30 +32,30 @@ namespace LogicNS;
             {
                 Task.Run(async () =>
                 {
-                    while (Animating)
+                    int round = roundCounter;
+                    while (Animating && round == roundCounter)
                     {
-                        int xPosDifference = (int) ball.speedX;
-                        int yPosDifference = (int) ball.speedY;
+                        double xPosDifference = ball.speedX;
+                        double yPosDifference = ball.speedY;
                         if (ball.X + ball.Radius + ball.speedX >= dataAPI.canvaswidth)
                         {
-                            xPosDifference = (int) (-1 * (ball.speedX - 2 * Math.Abs(dataAPI.canvaswidth - ball.X - ball.Radius)));
+                            xPosDifference = -1 * (ball.speedX - 2 * Math.Abs(dataAPI.canvaswidth - ball.X - ball.Radius));
                             ball.speedX *= -1;
                         }
                         else if (ball.X - ball.Radius + ball.speedX <= 0)
                         {
-                            xPosDifference = (int) (-1 * (ball.speedX + 2 * Math.Abs(ball.X - ball.Radius)));
+                            xPosDifference = -1 * (ball.speedX + 2 * Math.Abs(ball.X - ball.Radius));
                             ball.speedX *= -1;
                         }
 
                         if (ball.Y + ball.Radius + ball.speedY >= dataAPI.canvasheight)
                         {
-                            yPosDifference =
-                               (int) (-1 * (ball.speedY - 2 * Math.Abs(dataAPI.canvasheight - ball.Y - ball.Radius)));
+                            yPosDifference = -1 * (ball.speedY - 2 * Math.Abs(dataAPI.canvasheight - ball.Y - ball.Radius));
                             ball.speedY *= -1;
                         }
                         else if (ball.Y - ball.Radius + ball.speedY <= 0)
                         {
-                            yPosDifference = (int) (-1 * (ball.speedY + 2 * Math.Abs(ball.Y - ball.Radius)));
+                            yPosDifference =-1 * (ball.speedY + 2 * Math.Abs(ball.Y - ball.Radius));
                             ball.speedY *= -1;
                         }
 
