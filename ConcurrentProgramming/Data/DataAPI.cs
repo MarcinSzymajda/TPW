@@ -8,8 +8,8 @@ public class DataAPI : DataAbstractAPI
         minWeight = 5;
         maxWeight = 10;
         radius = 10;
-        maxspeed = 10;
-        canvaswidth = 600;
+        maxspeed = 5;
+        canvaswidth = 720;
         canvasheight = 600;
         color = "#FF0000";
     }
