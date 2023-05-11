@@ -35,6 +35,7 @@ namespace LogicNS;
                     int round = roundCounter;
                     while (Animating && round == roundCounter)
                     {
+
                         double xPosDifference = ball.speedX;
                         double yPosDifference = ball.speedY;
                         if (ball.X + ball.Radius + ball.speedX >= dataAPI.canvaswidth)
@@ -131,7 +132,7 @@ namespace LogicNS;
             }
         }
 
-        public override List<LogicNS.Ball> generateBallsList()
+        public override List<Ball> generateBallsList()
         {
             List<LogicNS.Ball> list = new List<Ball>();
             foreach (var ball in dataAPI.Balls)

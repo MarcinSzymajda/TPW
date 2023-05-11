@@ -4,13 +4,13 @@ namespace Tests;
 
 public class BallTest
 {
-    private Ball ball;
+    private DataNS.Ball ball;
    
     [SetUp]
     public void Setup()
     {
         DataAbstractAPI dataAbstractApi = DataAbstractAPI.CreateApi();
-        ball = new Ball(dataAbstractApi);
+        ball = new DataNS.Ball(dataAbstractApi);
     }
 
     [Test]
