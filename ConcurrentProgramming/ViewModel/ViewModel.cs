@@ -11,12 +11,10 @@ namespace ViewModelNS
     {
         public int WindowHeight { get; }
         public int WindowWidth { get; }
-
         public ICommand StartCommand { get; set; }
         public ICommand StopCommand { get; set; }
         public event PropertyChangedEventHandler? PropertyChanged;
         
-
         private int _count;
         public int Count
         {
@@ -29,8 +27,7 @@ namespace ViewModelNS
         }
 
         private Model model { get; set; }
-
-
+        
         public ObservableCollection<ModelNS.Ball> Balls
         {
             get { return model.Balls; }
@@ -48,19 +45,15 @@ namespace ViewModelNS
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            
         }
         private void Start()
         {
             Balls.Clear();
             model.GetStartingCirclePositions(Count);
-
         }
         private void Stop()
         {
             model.StopAnimation();
-            
         }
     }
 }
-

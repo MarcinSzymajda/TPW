@@ -1,8 +1,4 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
-
-
-namespace DataNS
+﻿namespace DataNS
 {
     public abstract class DataAbstractAPI
     {
@@ -18,8 +14,6 @@ namespace DataNS
         {
             return new DataAPI();
         }
-
         public abstract Ball createBall();
     }
-    
 }

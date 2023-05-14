@@ -10,10 +10,6 @@ namespace ModelNS
         private readonly LogicAbstractAPI logicAbstractAPI;
         public  ObservableCollection<ModelNS.Ball> Balls = new ObservableCollection<Ball>();
 
-       
-
-        public bool IsAnimating { get; set; }
-
         public Model(LogicAbstractAPI? logicAbstractAPI = null) {
             this.logicAbstractAPI = logicAbstractAPI?? LogicAbstractAPI.CreateAPI();
             this.canvasWidth = this.logicAbstractAPI.canvasWidth;
@@ -27,9 +23,7 @@ namespace ModelNS
             logicAbstractAPI.CreateBalls(amountOfBalls);
             convert();
         }
-
-
-
+        
         public void StopAnimation()
         {
             logicAbstractAPI.Stop();
@@ -37,12 +31,10 @@ namespace ModelNS
 
         public void convert()
         {
-            
             foreach (var ball in logicAbstractAPI.generateBallsList())
             {
                 Balls.Add(new Ball(ball));
             }
         }
-        
     }
 }

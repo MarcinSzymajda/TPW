@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using DataNS;
+﻿using DataNS;
 
 namespace LogicNS;
 
@@ -8,7 +7,6 @@ namespace LogicNS;
     {
         private readonly DataAbstractAPI? dataAPI;
         private int roundCounter = 0;
-        
         
         public LogicAPI(DataAbstractAPI dataAPI)
         {
@@ -26,12 +24,10 @@ namespace LogicNS;
             {
                 dataAPI.Balls.Add(dataAPI.createBall());
             }
-
             foreach (var ball in dataAPI.Balls)
             {
                 Task.Run(async () =>
                 {
-                    
                     int round = roundCounter;
                     while (Animating && round == roundCounter)
                     {
@@ -41,41 +37,24 @@ namespace LogicNS;
                             double yPosDifference = ball.speedY;
                             if (ball.X + ball.Radius + ball.speedX >= dataAPI.canvaswidth)
                             {
-
-                                xPosDifference =
-                                    -1 * (ball.speedX - 2 * Math.Abs(dataAPI.canvaswidth - ball.X - ball.Radius));
+                                xPosDifference = -1 * (ball.speedX - 2 * Math.Abs(dataAPI.canvaswidth - ball.X - ball.Radius));
                                 ball.speedX *= -1;
-
                             }
                             else if (ball.X - ball.Radius + ball.speedX <= 0)
                             {
-
                                 xPosDifference = -1 * (ball.speedX + 2 * Math.Abs(ball.X - ball.Radius));
                                 ball.speedX *= -1;
-
                             }
-                            
-
                             if (ball.Y + ball.Radius + ball.speedY >= dataAPI.canvasheight)
                             {
 
                                 yPosDifference = -1 * (ball.speedY - 2 * Math.Abs(dataAPI.canvasheight - ball.Y - ball.Radius));
                                 ball.speedY *= -1;
-
-                            }
-
-                            else if (ball.Y - ball.Radius + ball.speedY <= 0)
+                            } else if (ball.Y - ball.Radius + ball.speedY <= 0)
                             {
-
                                 yPosDifference = -1 * (ball.speedY + 2 * Math.Abs(ball.Y - ball.Radius));
                                 ball.speedY *= -1;
-
                             }
-
-
-                            //sprawdzanie kolizji między kulami
-
-
                             ball.X += xPosDifference;
                             ball.Y += yPosDifference;
                             if (ball.X - ball.Radius < 0)
@@ -93,20 +72,14 @@ namespace LogicNS;
                                 ball.Y = dataAPI.canvasheight - ball.Radius;
                             }
                         }
-
-
                         detectCollision(ball);
-                        
-
                         await Task.Delay(10);
-                        
                     }
                 });
-
             }
         }
 
-        public override void detectCollision(DataNS.Ball ball)
+        private void detectCollision(DataNS.Ball ball)
         {
             for (int i = ball.id; i < dataAPI.Balls.Count; i++)
             {
@@ -114,7 +87,6 @@ namespace LogicNS;
                 {
                     lock (dataAPI.Balls[i])
                     {
-
                         double xSubstraction = dataAPI.Balls[i].X - ball.X;
                         double ySubstraction = dataAPI.Balls[i].Y - ball.Y;
                         double radiusSum = ball.Radius + dataAPI.Balls[i].Radius;
@@ -123,50 +95,32 @@ namespace LogicNS;
                         if (ball == dataAPI.Balls[i]) continue;
                         if (Math.Abs(xSubstraction) >= radiusSum) continue;
                         if (Math.Abs(ySubstraction) >= radiusSum) continue;
-                        if (powSum >= radiusSum)
-                            continue;
-
+                        if (powSum >= radiusSum) continue;
                         double nVectorX = xSubstraction / powSum;
                         double nVectorY = ySubstraction / powSum;
-
                         double tVectorX = -nVectorY;
                         double tVectorY = nVectorX;
-
                         double nVectorProduct1 = nVectorX * ball.speedX + nVectorY * ball.speedY;
-                        double nVectorProduct2 =
-                            nVectorX * dataAPI.Balls[i].speedX + nVectorY * dataAPI.Balls[i].speedY;
-
+                        double nVectorProduct2 = nVectorX * dataAPI.Balls[i].speedX + nVectorY * dataAPI.Balls[i].speedY;
                         double tVectorProduct1 = tVectorX * ball.speedX + tVectorY * ball.speedY;
-                        double tVectorProduct2 =
-                            tVectorX * dataAPI.Balls[i].speedX + tVectorY * dataAPI.Balls[i].speedY;
-
-                        double newSpeed1 =
-                            (nVectorProduct1 * (ball.Weight - dataAPI.Balls[i].Weight) +
-                             2 * dataAPI.Balls[i].Weight * nVectorProduct2) /
-                            (ball.Weight + dataAPI.Balls[i].Weight);
-                        double newSpeed2 =
-                            (nVectorProduct2 * (dataAPI.Balls[i].Weight - ball.Weight) +
-                             2 * ball.Weight * nVectorProduct1) / (ball.Weight + dataAPI.Balls[i].Weight);
-
+                        double tVectorProduct2 = tVectorX * dataAPI.Balls[i].speedX + tVectorY * dataAPI.Balls[i].speedY;
+                        double newSpeed1 = (nVectorProduct1 * (ball.Weight - dataAPI.Balls[i].Weight) +
+                                            2 * dataAPI.Balls[i].Weight * nVectorProduct2) /
+                                           (ball.Weight + dataAPI.Balls[i].Weight);
+                        double newSpeed2 = (nVectorProduct2 * (dataAPI.Balls[i].Weight - ball.Weight) +
+                                            2 * ball.Weight * nVectorProduct1) / (ball.Weight + dataAPI.Balls[i].Weight);
                         ball.speedX = newSpeed1 * nVectorX + tVectorProduct1 * tVectorX;
                         ball.speedY = newSpeed1 * nVectorY + tVectorProduct1 * tVectorY;
-
                         dataAPI.Balls[i].speedX = newSpeed2 * nVectorX + tVectorProduct2 * tVectorX;
                         dataAPI.Balls[i].speedY = newSpeed2 * nVectorY + tVectorProduct2 * tVectorY;
-
                         double jump = radiusSum - powSum;
-
-                        ball.X += jump * (ball.X - dataAPI.Balls[i].X) / powSum;
+                        ball.X += jump * (ball.X - dataAPI.Balls[i].X) / powSum; 
                         ball.Y += jump * (ball.Y - dataAPI.Balls[i].Y) / powSum;
-
                         dataAPI.Balls[i].X -= jump * (ball.X - dataAPI.Balls[i].X) / powSum;
                         dataAPI.Balls[i].Y -= jump * (ball.Y - dataAPI.Balls[i].Y) / powSum;
                     }
-
                 }
-
                 return;
-                        
             }
         }
 
@@ -178,7 +132,6 @@ namespace LogicNS;
                 Ball kula = new Ball(ball);
                 list.Add(kula);
             }
-
             return list;
         }
 

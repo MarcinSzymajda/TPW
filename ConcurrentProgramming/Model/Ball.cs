@@ -38,12 +38,12 @@ public class Ball : INotifyPropertyChanged
         this.Y = ball.Y;
         Radius = ball.Radius;
         Color = ball.Color;
-        
         ball.PropertyChanged += UpdateBall;
     }
-    public void UpdateBall(object source, PropertyChangedEventArgs e)
+
+    private void UpdateBall(object source, PropertyChangedEventArgs e)
     {
-        LogicNS.Ball t = (LogicNS.Ball)source;
+        LogicNS.Ball t = (LogicNS.Ball) source;
         if (e.PropertyName == "Y")
         {
             Y = t.Y;
@@ -57,13 +57,5 @@ public class Ball : INotifyPropertyChanged
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        field = value;
-        OnPropertyChanged(propertyName);
-        return true;
     }
 }

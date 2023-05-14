@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using DataNS;
+﻿using DataNS;
 
 namespace LogicNS
 {
@@ -18,8 +17,5 @@ namespace LogicNS
 
         public abstract void Start();
         public abstract void Stop();
-
-        public abstract void detectCollision(DataNS.Ball ball);
-
     }
 }

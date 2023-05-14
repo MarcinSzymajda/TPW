@@ -7,8 +7,7 @@ namespace ViewModelNS
         private readonly Action _execute;
         
         public event EventHandler? CanExecuteChanged;
-
-
+        
         public Commands(Action execute)
         {
             _execute = execute ?? throw new ArgumentNullException();
