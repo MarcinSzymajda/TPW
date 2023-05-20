@@ -1,4 +1,5 @@
-﻿using DataNS;
+﻿using System.Diagnostics;
+using DataNS;
 
 namespace LogicNS;
 
@@ -7,6 +8,7 @@ namespace LogicNS;
     {
         private readonly DataAbstractAPI? dataAPI;
         private int roundCounter = 0;
+        private Stopwatch timer = new Stopwatch();
         
         public LogicAPI(DataAbstractAPI dataAPI)
         {
@@ -17,6 +19,7 @@ namespace LogicNS;
 
         public override void CreateBalls(int amountOfBalls)
         {
+            
             roundCounter++;
             DataNS.Ball.counter = 0;
             dataAPI.Balls.Clear();
@@ -24,8 +27,11 @@ namespace LogicNS;
             {
                 dataAPI.Balls.Add(dataAPI.createBall());
             }
+            timer.Start();
+            Logger logger = Logger.createLogger();
             foreach (var ball in dataAPI.Balls)
             {
+                
                 Task.Run(async () =>
                 {
                     int round = roundCounter;
@@ -73,9 +79,12 @@ namespace LogicNS;
                             }
                         }
                         detectCollision(ball);
+                        TimeSpan ts = timer.Elapsed;
+                        logger.prepareDataToSave(ball.id,ball.X,ball.Y,ball.speedX,ball.speedY,ts.ToString("mm\\:ss\\.ff"));
                         await Task.Delay(10);
                     }
                 });
+                
             }
         }
 
@@ -143,5 +152,6 @@ namespace LogicNS;
         public override void Stop()
         {
             Animating = false;
+            timer.Stop();
         }
     }

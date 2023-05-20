@@ -5,12 +5,12 @@ namespace DataNS
 {
     public class Ball : INotifyPropertyChanged
     {
-        public int Radius { get; set; }
+        public int Radius { get; }
         private double x;
         private double y;
         private double speedx;
         private double speedy;
-        public int id { get; set; }
+        public int id { get; }
         public static int counter = 0;
         public double Y
         {
@@ -33,8 +33,8 @@ namespace DataNS
         public double speedX
         { get ; set; }
         public double speedY { get; set ;}
-        public string Color { get; set; }
-        public double Weight { get; set; }
+        public string Color { get; }
+        public double Weight { get; }
         
 
         public Ball(DataAbstractAPI dataAbstractApi)
