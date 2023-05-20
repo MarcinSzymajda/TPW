@@ -9,6 +9,7 @@ namespace LogicNS;
         private readonly DataAbstractAPI? dataAPI;
         private int roundCounter = 0;
         private Stopwatch timer = new Stopwatch();
+        private TimeSpan ts = new TimeSpan();
         
         public LogicAPI(DataAbstractAPI dataAPI)
         {
@@ -79,7 +80,7 @@ namespace LogicNS;
                             }
                         }
                         detectCollision(ball);
-                        TimeSpan ts = timer.Elapsed;
+                        ts = timer.Elapsed;
                         logger.prepareDataToSave(ball.id,ball.X,ball.Y,ball.speedX,ball.speedY,ts.ToString("mm\\:ss\\.ff"));
                         await Task.Delay(10);
                     }
