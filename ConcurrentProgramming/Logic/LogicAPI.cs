@@ -10,6 +10,7 @@ namespace LogicNS;
         private int roundCounter = 0;
         private Stopwatch timer = new Stopwatch();
         private TimeSpan ts = new TimeSpan();
+        private Logger logger = Logger.createLogger();
         
         public LogicAPI(DataAbstractAPI dataAPI)
         {
@@ -29,7 +30,7 @@ namespace LogicNS;
                 dataAPI.Balls.Add(dataAPI.createBall());
             }
             timer.Start();
-            Logger logger = Logger.createLogger();
+            
             foreach (var ball in dataAPI.Balls)
             {
                 
@@ -148,6 +149,7 @@ namespace LogicNS;
         public override void Start()
         {
             Animating = true;
+            logger.initFile();
         }
 
         public override void Stop()

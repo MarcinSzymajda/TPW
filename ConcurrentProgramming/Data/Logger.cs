@@ -10,6 +10,15 @@ public class Logger
         return new Logger();
     }
 
+    public void initFile()
+    {
+        string path =
+            $"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName}/BallProperties.json";
+        if(File.Exists(path)) {
+            File.Delete(path);
+        }
+    }
+
     public void prepareDataToSave(int id,double xPos, double yPos, double speedX, double speedY,string time)
     {
         
