@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using DataNS;
+using System.Timers;
 
 namespace LogicNS;
 
@@ -8,8 +9,7 @@ namespace LogicNS;
     {
         private readonly DataAbstractAPI? dataAPI;
         private int roundCounter = 0;
-        private Stopwatch timer = new Stopwatch();
-        private TimeSpan ts = new TimeSpan();
+        private static System.Timers.Timer aTimer;
         private Logger logger = Logger.createLogger();
         
         public LogicAPI(DataAbstractAPI dataAPI)
@@ -18,6 +18,23 @@ namespace LogicNS;
             canvasHeight = this.dataAPI.canvasheight;
             canvasWidth = this.dataAPI.canvaswidth;
         }
+        
+        private void SetTimer()
+        {
+            aTimer = new System.Timers.Timer(2);
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+        
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            foreach (var ball in dataAPI.Balls)
+            {
+                logger.prepareDataToSave(ball.id, ball.X, ball.Y, ball.speedX, ball.speedY);
+            }
+        }
+
 
         public override void CreateBalls(int amountOfBalls)
         {
@@ -29,10 +46,11 @@ namespace LogicNS;
             {
                 dataAPI.Balls.Add(dataAPI.createBall());
             }
-            timer.Start();
+            
             
             foreach (var ball in dataAPI.Balls)
             {
+                SetTimer();
                 
                 Task.Run(async () =>
                 {
@@ -81,8 +99,7 @@ namespace LogicNS;
                             }
                         }
                         detectCollision(ball);
-                        ts = timer.Elapsed;
-                        logger.prepareDataToSave(ball.id,ball.X,ball.Y,ball.speedX,ball.speedY,ts.ToString("mm\\:ss\\.ff"));
+                        //logger.prepareDataToSave(ball.id,ball.X,ball.Y,ball.speedX,ball.speedY);
                         await Task.Delay(10);
                     }
                 });
@@ -155,6 +172,6 @@ namespace LogicNS;
         public override void Stop()
         {
             Animating = false;
-            timer.Stop();
+            aTimer.Stop();
         }
     }
