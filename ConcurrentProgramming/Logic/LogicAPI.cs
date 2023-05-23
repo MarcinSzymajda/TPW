@@ -21,7 +21,7 @@ namespace LogicNS;
         
         private void SetTimer()
         {
-            aTimer = new System.Timers.Timer(2);
+            aTimer = new System.Timers.Timer(500);
             aTimer.Elapsed += OnTimedEvent;
             aTimer.AutoReset = true;
             aTimer.Enabled = true;
@@ -173,5 +173,6 @@ namespace LogicNS;
         {
             Animating = false;
             aTimer.Stop();
+            aTimer.Dispose();
         }
     }
